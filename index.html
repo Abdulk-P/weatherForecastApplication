@@ -3,99 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <title>Weather Forecast Application</title>
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1561484930-998b6a7b22e8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif; /* Ensure Poppins is available or fallback */
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&family=Roboto:wght@400;700&display=swap');
+    </style>
 </head>
-<body">
-    
-    <div class="container">
-        <div class="current-info">
-            <div class="date-container">
-                <div class="time" id="time">
-                    12:30 <span id="am-pm"></span>
+<body class="bg-cover bg-no-repeat h-full font-poppins">
+    <div class="container mx-auto px-5 py-5 text-white">
+        <div class="current-info flex justify-between flex-wrap">
+            <div class="date-container font-light pl-5 mt-5 ">
+                <div class="time text-7xl " id="time">
+                    12:30 <span id="am-pm" class="text-3xl ml-5"></span>
                 </div>
-                <div class="date" id="date">
+                <div class="date text-3xl" id="date">
                     Monday, 24 May
                 </div>
-
-                <div class="others" id="current-weather-items">
-                    <div class="weather-item">
-                        <div>Humidity</div>
-                        <div>95.2%</div>
+                <div class="others flex flex-col bg-black/60 p-5 rounded-lg border border-gray-400 mt-4" id="current-weather-items">
                     </div>
-                    <div class="weather-item">
-                        <div>Pressure</div>
-                        <div>95</div>
-                    </div>
-                    <div class="weather-item">
-                        <div>Wind Speed</div>
-                        <div>952</div>
-                    </div>
-                </div>
             </div>
-            <div class="place-container">
-                <div class="time-zone" id="time-zone">Asia/Kolkata</div>
-                <div class="country" id="country">IN</div>
+            <div class="place-container text-right pl-5 mt-5">
+                <div class="time-zone text-3xl font-light" id="time-zone">Kolkata</div>
+                <div class="country text-xs font-bold" id="country">IN</div>
             </div>
         </div>
     </div>
 
-    <div class="future-forecast">
-            <div class="today" id="current-temp">
-                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather image" class="w-icon">
-                <div class="other">
-                    <div class="day">Monday</div>
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                </div>
-                
+    <div class="search-input flex justify-center px-4 py-6 sm:py-9">
+        <input id="city-input" type="text" placeholder="Enter city name..."
+               class="px-4 py-2 rounded-l-md text-black focus:outline-none w-full sm:w-1/2 max-w-md">
+        <button id="search-button" class="bg-blue-600 px-4 py-2 rounded-r-md hover:bg-blue-700 w-20">
+            Search
+        </button>
+        <button id="current-location-button" class="bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700 w-32 ml-2">
+            Current Location
+        </button>
+    </div>
+
+    <div class="city-dropdown flex justify-center mt-2">
+        <select id="city-dropdown" class="p-2 bg-white border-gray-500 rounded-md text-black">
+            <option value="" class="bg-white">Select recently searched city</option>
+        </select>
+    </div>
+
+    <div class="future-forecast bg-black/80 py-6 fixed bottom-0 left-0 w-full text-white flex items-center justify-center overflow-x-auto">
+        <div class="weather-forecast flex" id="weather-forecast">
+            <div class="weather-forecast-item flex flex-col items-center justify-center m-2 border border-gray-400 rounded-lg p-4 min-w-[100px]">
+                <div class="day bg-gray-700 rounded-full px-3 py-1 text-center">Mon</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-16">
+                <div class="temp font-light mt-2">Night -25.6&#176; C</div>
+                <div class="temp font-light">Day -35.6&#176; C</div>
             </div>
 
-            <div class="weather-forecast" id="weather-forecast">
-                <div class="weather-forecast-item">
-                    <div class="day">Tue</div>
-                    <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night -25.6&#176; C</div>
-                    <div class="temp">Day -35.6&#176; C</div>
-                </div>
-            
-                <div class="weather-forecast-item">
-                    <div class="day">Wens</div>
-                    <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night -25.6&#176; C</div>
-                    <div class="temp">Day -35.6&#176; C</div>
-                </div>
-            
-                <div class="weather-forecast-item">
-                    <div class="day">Thur</div>
-                    <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night -25.6&#176; C</div>
-                    <div class="temp">Day -35.6&#176; C</div>
-                </div>
-        
-                <div class="weather-forecast-item">
-                    <div class="day">Fri</div>
-                    <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night -25.6&#176; C</div>
-                    <div class="temp">Day -35.6&#176; C</div>
-                </div>
-    
-                <div class="weather-forecast-item">
-                    <div class="day">Sat</div>
-                    <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night -25.6&#176; C</div>
-                    <div class="temp">Day -35.6&#176; C</div>
-                </div>
-                <div class="weather-forecast-item">
-                    <div class="day">Sun</div>
-                    <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night -25.6&#176; C</div>
-                    <div class="temp">Day -35.6&#176; C</div>
-                </div>
+            <div class="weather-forecast-item flex flex-col items-center justify-center m-2 border border-gray-400 rounded-lg p-4 min-w-[100px]">
+                <div class="day bg-gray-700 rounded-full px-3 py-1 text-center">Tue</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-16">
+                <div class="temp font-light mt-2">Night -25.6&#176; C</div>
+                <div class="temp font-light">Day -35.6&#176; C</div>
             </div>
+
+            <div class="weather-forecast-item flex flex-col items-center justify-center m-2 border border-gray-400 rounded-lg p-4 min-w-[100px]">
+                <div class="day bg-gray-700 rounded-full px-3 py-1 text-center">Wed</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-16">
+                <div class="temp font-light mt-2">Night -25.6&#176; C</div>
+                <div class="temp font-light">Day -35.6&#176; C</div>
+            </div>
+
+            <div class="weather-forecast-item flex flex-col items-center justify-center m-2 border border-gray-400 rounded-lg p-4 min-w-[100px]">
+                <div class="day bg-gray-700 rounded-full px-3 py-1 text-center">Thu</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-16">
+                <div class="temp font-light mt-2">Night -25.6&#176; C</div>
+                <div class="temp font-light">Day -35.6&#176; C</div>
+            </div>
+
+            <div class="weather-forecast-item flex flex-col items-center justify-center m-2 border border-gray-400 rounded-lg p-4 min-w-[100px]">
+                <div class="day bg-gray-700 rounded-full px-3 py-1 text-center">Fri</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-16">
+                <div class="temp font-light mt-2">Night -25.6&#176; C</div>
+                <div class="temp font-light">Day -35.6&#176; C</div>
+            </div>
+
+            <div class="weather-forecast-item flex flex-col items-center justify-center m-2 border border-gray-400 rounded-lg p-4 min-w-[100px]">
+                <div class="day bg-gray-700 rounded-full px-3 py-1 text-center">Sat</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-16">
+                <div class="temp font-light mt-2">Night -25.6&#176; C</div>
+                <div class="temp font-light">Day -35.6&#176; C</div>
+            </div>
+
+            <div class="weather-forecast-item flex flex-col items-center justify-center m-2 border border-gray-400 rounded-lg p-4 min-w-[100px]">
+                <div class="day bg-gray-700 rounded-full px-3 py-1 text-center">Sun</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-16">
+                <div class="temp font-light mt-2">Night -25.6&#176; C</div>
+                <div class="temp font-light">Day -35.6&#176; C</div>
+            </div>
+        </div>
     </div>
-    
 
     <script src="script.js"></script>
 </body>
