@@ -1,17 +1,12 @@
+
 const timeEl = document.getElementById('time');
 const dateEl = document.getElementById('date');
 const currentWeatherItemsEl = document.getElementById('current-weather-items');
 const timezone = document.getElementById('time-zone');
-const currentTempEl = document.getElementById('current-temp');
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wensday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-<<<<<<< HEAD
 const API_KEY = "440de0c1e31248629cd171227252604";
-=======
-const API_KEY = 
->>>>>>> 24a83a5fa971719f2f0cae68525aab829ee68be4
-
 
 
 //----------------time and Date setup-------------------
@@ -29,7 +24,6 @@ setInterval(() =>{
     timeEl.innerHTML =  hoursIn12HrFormat + ':' + minutes + ' ' + `<span id="am-pm">${ampm}</span>`
     
     dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month];
-<<<<<<< HEAD
 }, 1000);
 
 
@@ -237,6 +231,3 @@ function displayForecast(data) {
 
     weatherForecastEl.innerHTML = forecastHTML;
 }
-=======
-}, 1000)
->>>>>>> 24a83a5fa971719f2f0cae68525aab829ee68be4
