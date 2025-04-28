@@ -19,8 +19,6 @@ This application relies on the WeatherAPI.com API. You will need to obtain your 
     const API_KEY = 'YOUR_WEATHERAPI_KEY'; // Replace with your actual key
     ```
 
-    You might see a placeholder for `GEOCODING_API_KEY`. While the current implementation uses WeatherAPI's geocoding, if you were to integrate a separate service, you'd need to replace that as well.
-
 ## Usage
 
 1.  **Enter a city name:** Type the name of a city in the input field and click the "Search" button. The application will display the current weather information and the 7-day forecast for that city.
