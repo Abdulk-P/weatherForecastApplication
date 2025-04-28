@@ -6,8 +6,7 @@ const timezone = document.getElementById('time-zone');
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wensday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const API_KEY = "440de0c1e31248629cd171227252604";
-
+const API_KEY = 'YOUR_WEATHERAPI_KEY';
 
 //----------------time and Date setup-------------------
 
